@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "929432709380-mj869d6qu570uarg83gvnd7bqr1b8uvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.starklabs.talentio",
+            "certificate_hash": "bac9f21435f50a17bd9f750c754565a99f2b8346"
+          }
+        },
+        {
           "client_id": "929432709380-jec60e4u67c5b9td1gsrviskbpp0lnqn.apps.googleusercontent.com",
           "client_type": 3
         }

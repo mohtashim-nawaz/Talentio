@@ -9,14 +9,32 @@
     android:id="@+id/loginTopLayout"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/talentio"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:layout_marginTop="10dp"
+        android:textSize="32sp"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Username"
+        android:hint="E-mail"
         app:hintEnabled="true"
         app:boxStrokeColor="@color/colorAccent"
         app:hintTextColor="@color/colorAccent"
@@ -46,7 +64,8 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
-        app:boxCornerRadiusBottomEnd="10dp">
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -65,5 +84,34 @@
         android:id="@+id/button_login"
         android:backgroundTint="@color/colorAccent"
         android:text="Login"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Didn't have an account yet?"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Register Now"
+            android:clickable="true"
+            android:id="@+id/tv_signup"
+            android:textColor="@color/colorAccent"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_progress_bar"
+        android:visibility="gone"
+        android:layout_gravity="center" />
 
 </LinearLayout>
