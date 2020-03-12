@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929432709380",
+    "firebase_url": "https://talentio-review.firebaseio.com",
+    "project_id": "talentio-review",
+    "storage_bucket": "talentio-review.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929432709380:android:60a7dcb053dfc19a81c851",
+        "android_client_info": {
+          "package_name": "com.starklabs.talentio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929432709380-jec60e4u67c5b9td1gsrviskbpp0lnqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmZkGSt1YHwEnlGdsk0RvCMX6Wqt7FzYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929432709380-jec60e4u67c5b9td1gsrviskbpp0lnqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
