@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
@@ -94,6 +95,13 @@ public class SignupActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(SignupActivity.this,"Successfully Registered",Toast.LENGTH_LONG).show();
+                            FirebaseUser curUser = mAuth.getCurrentUser();
+                            curUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(SignupActivity.this, "Check your e-mail for verification", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             Intent intent= new Intent(SignupActivity.this,LoginActivity.class);
                             startActivity(intent);
                             finish();

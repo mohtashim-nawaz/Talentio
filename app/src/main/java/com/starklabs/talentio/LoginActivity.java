@@ -1,8 +1,10 @@
 package com.starklabs.talentio;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -21,6 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -105,9 +108,51 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     Toast.makeText(LoginActivity.this,"Successful",Toast.LENGTH_LONG).show();
-                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    final FirebaseUser curUser=mFirebaseAuth.getCurrentUser();
+                    if(!curUser.isEmailVerified())
+                    {
+                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                         builder.setCancelable(false)
+                                 .setMessage("E-mail is not verified. Please verify and Login again.\nResend Verification E-mail?")
+                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         dialog.dismiss();
+                                     }
+                                 })
+                                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         curUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                             @Override
+                                             public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful())
+                                                    {
+                                                        Toast.makeText(LoginActivity.this, "Successfully sent the email.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                    else
+                                                    {
+                                                        Toast.makeText(LoginActivity.this,"Couldn't send the email.\n Please retry after some time",Toast.LENGTH_LONG).show();
+                                                    }
+                                             }
+                                         });
+                                     }
+                                 })
+                                 .setNeutralButton("DISMISS", new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         dialog.dismiss();
+                                     }
+                                 });
+                         AlertDialog alertDialog = builder.create();
+                         alertDialog.show();
+                    }
+                    else {
+                        Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
                 else
                 {
