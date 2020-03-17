@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashActivity extends AppCompatActivity {
 
     String color1="#f44336";
@@ -16,12 +19,14 @@ public class SplashActivity extends AppCompatActivity {
     String color3="#ffcdd2";
     LinearLayout mLinearLayout;
     Handler mHandler;
+    FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
+        mFirebaseAuth=FirebaseAuth.getInstance();
         mLinearLayout=findViewById(R.id.splashTopLayout);
         mHandler=new Handler();
 
@@ -33,9 +38,20 @@ public class SplashActivity extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent= new Intent(SplashActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
+                mFirebaseUser=mFirebaseAuth.getCurrentUser();
+                if(mFirebaseUser!=null)
+                {
+                    Intent intent=new Intent(SplashActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else
+                {
+                    Intent intent= new Intent(SplashActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         },1500);
     }
