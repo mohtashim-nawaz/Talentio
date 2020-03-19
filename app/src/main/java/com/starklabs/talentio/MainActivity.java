@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     CardView displayBar;
     MaterialButton rateBtn;
     Spinner citySpinner, instrSpinner;
+    ArrayList<ArrayList<String>> city;
+    ArrayList<ArrayList<String>> instr;
     ArrayList<String> cityList;
     ArrayList<String> instrList;
     ArrayAdapter<String> cityAdapter;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         instrSpinner=findViewById(R.id.spinner_instr);
         id_tv=findViewById(R.id.main_id_tv);
 
+        city=new ArrayList<>();
+        instr=new ArrayList<>();
 
         mToggle= new ActionBarDrawerToggle(myActivity,mDrawerLayout,mToolbar,R.string.open_drawer,R.string.close_drawer);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         instrList=new ArrayList<>();
         instrList.add("Instructor");
         db=FirebaseFirestore.getInstance();
-        db.collection("cities").document(city).collection("rating")
+        db.collection("cities").document("hyderabad").collection("rating")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -234,6 +238,9 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     Log.d("GETINFO","I am here");
                                     cityList.add((String)document.get("name"));
+                                    ArrayList<String> temp=new ArrayList<>();
+                                    temp.add(document.getId());
+                                    temp.add((String) document.get("name"));
                                 }
                                 catch (Exception e)
                                 {
