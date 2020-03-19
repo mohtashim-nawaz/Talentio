@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -127,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                Intent intent = new Intent(MainActivity.this,RateActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -142,11 +146,21 @@ public class MainActivity extends AppCompatActivity {
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                instr.clear();
+                instrSpinner.setAdapter(null);
+
+                ArrayList<String> temp=new ArrayList<>();
+                temp.add("Instructor");
+
+                ArrayAdapter<String> tempAdapter= new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_item,temp);
+                tempAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                instrSpinner.setAdapter(tempAdapter);
+
                 if(id!=0)
                 {
                     try {
                         Log.d("selected:",(String)parent.getItemAtPosition(position));
-                        getInstructor((String)parent.getItemAtPosition(position));
+                        getInstructor(city.get(position-1).get(0));
                     }catch(Exception e)
                     {
                         Toast.makeText(MainActivity.this,"Error loading instructors",Toast.LENGTH_SHORT).show();
@@ -165,6 +179,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
+        city.clear();
+        instr.clear();
+
         try {
             getCities();
         }
@@ -185,10 +203,13 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setMessage("Loading Cities...");
         mProgressDialog.show();
 
+        Log.d("city:",city);
         instrList=new ArrayList<>();
         instrList.add("Instructor");
+
+
         db=FirebaseFirestore.getInstance();
-        db.collection("cities").document("hyderabad").collection("rating")
+        db.collection("cities").document(city).collection("rating")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -196,8 +217,17 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful() && task.getResult()!=null) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("GETINFO", document.getId() + " => " + document.getData());
-                                instrList.add((String)document.get("name"));
+                                ArrayList<String> temp=new ArrayList<>();
+                                temp.add(document.getId());
+                                temp.add((String) document.get("name"));
+                                instr.add(temp);
                             }
+
+                            for(int i=0;i<instr.size();i++)
+                            {
+                                instrList.add(instr.get(i).get(1));
+                            }
+
                         } else {
                             Log.w("GETINFO", "Error getting documents.", task.getException());
                             Toast.makeText(MainActivity.this, "No cities found", Toast.LENGTH_SHORT).show();
@@ -237,15 +267,21 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("GETINFO", document.getId() + " => " + document.getData());
                                 try {
                                     Log.d("GETINFO","I am here");
-                                    cityList.add((String)document.get("name"));
                                     ArrayList<String> temp=new ArrayList<>();
                                     temp.add(document.getId());
                                     temp.add((String) document.get("name"));
+                                    city.add(temp);
                                 }
                                 catch (Exception e)
                                 {
                                 }
                             }
+
+                            for(int i=0;i<city.size();i++)
+                            {
+                                cityList.add(city.get(i).get(1));
+                            }
+
                         } else {
                             Log.w("GETINFO", "Error getting documents.", task.getException());
                             Toast.makeText(MainActivity.this, "No cities found", Toast.LENGTH_SHORT).show();

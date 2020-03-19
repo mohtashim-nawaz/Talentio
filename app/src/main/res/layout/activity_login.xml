@@ -85,7 +85,6 @@
         android:layout_marginTop="25dp"
         app:cornerRadius="10dp"
         android:id="@+id/button_login"
-        android:backgroundTint="@color/colorAccent"
         android:text="Login"/>
 
     <LinearLayout

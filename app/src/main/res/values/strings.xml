@@ -6,4 +6,9 @@
     <string name="city">City</string>
     <string name="instructor">Instructor</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rating_parameter_1">Rating parameter 1</string>
+    <string name="rating_parameter_2">Rating parameter 2</string>
+    <string name="rating_parameter_3">Rating parameter 3</string>
+    <string name="rating_parameter_4">Rating parameter 4</string>
+    <string name="rating_parameter_5">Rating parameter 5</string>
 </resources>
