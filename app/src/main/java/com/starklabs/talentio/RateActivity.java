@@ -91,14 +91,19 @@ public class RateActivity extends AppCompatActivity
                                 if(document.getId().equals(instrId))
                                 {
                                     try{
-                                        v1= (double) document.get("p1");
-                                        v2= (double) document.get("p2");
-                                        v3= (double) document.get("p3");
-                                        v4= (double) document.get("p4");
-                                        v5= (double) document.get("p5");
-                                        num= (double) document.get("total");
 
-                                        Log.d("mydata:",v1+":"+v2+":"+v3+":"+v4+":"+v5+":"+num);
+                                        v1= ((Number)document.get("p1")).doubleValue();
+
+                                        v2= ((Number) document.get("p2")).doubleValue();
+
+                                        v3= ((Number) document.get("p3")).doubleValue();
+
+                                        v4= ((Number) document.get("p4")).doubleValue();
+
+                                        v5= ((Number) document.get("p5")).doubleValue();
+
+                                        num= ((Number) document.get("total")).doubleValue();
+
 
                                         double temp1=((v1*num)+(b1))/(num+1);
                                         double temp2=((v2*num)+(b2))/(num+1);
@@ -106,13 +111,14 @@ public class RateActivity extends AppCompatActivity
                                         double temp4=((v4*num)+(b4))/(num+1);
                                         double temp5=((v5*num)+(b5))/(num+1);
                                         double numTemp= num+1.0;
-                                        Log.d("mydata:",temp1+":"+temp2+":"+temp3+":"+temp4+":"+temp5+":"+numTemp);
+                                        //Log.d("mydata:",temp1+":"+temp2+":"+temp3+":"+temp4+":"+temp5+":"+numTemp);
 
                                         saveData(numTemp, temp1, temp2, temp3, temp4, temp5);
                                     }catch(Exception e)
                                     {
                                         Toast.makeText(RateActivity.this, "Something went wrong\nContact Admin", Toast.LENGTH_LONG).show();
                                         Log.d("mydata:",e.getMessage());
+                                        localProgress.cancel();
                                     }
                                 }
                             }
@@ -139,6 +145,7 @@ public class RateActivity extends AppCompatActivity
                         else
                         {
                             Toast.makeText(RateActivity.this, "Couldn't rate at this moment", Toast.LENGTH_SHORT).show();
+                            localProgress.cancel();
                         }
                     }
                 });

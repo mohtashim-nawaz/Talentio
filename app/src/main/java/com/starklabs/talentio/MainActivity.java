@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
     TextView id_tv;
     FirebaseFirestore db;
     NavigationView mNavigationView;
-    DialogInterface.OnClickListener dialogClickListener;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -383,20 +385,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        dialogClickListener= new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        finish();
-                        break;
-
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        dialog.dismiss();
-                        break;
-                }
-            }
-        };
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -405,17 +393,27 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(false);
             else
             {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Do you want to exit?")
-                        .setPositiveButton("Yes",dialogClickListener)
-                        .setNegativeButton("No",dialogClickListener)
+                        .setTitle("Alert!")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
                         .setCancelable(false);
-                AlertDialog alertDialog=builder.create();
-                alertDialog.show();
 
-
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
-            super.onBackPressed();
         }
 
     }
