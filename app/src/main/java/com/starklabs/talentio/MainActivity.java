@@ -409,8 +409,9 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMessage("Do you want to exit?")
                         .setPositiveButton("Yes",dialogClickListener)
                         .setNegativeButton("No",dialogClickListener)
-                        .setCancelable(false)
-                        .show();
+                        .setCancelable(false);
+                AlertDialog alertDialog=builder.create();
+                alertDialog.show();
 
 
             }
