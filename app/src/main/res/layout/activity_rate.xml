@@ -42,7 +42,7 @@
                 android:id="@+id/rating_bar_1"
                 android:numStars="5"
                 android:layout_marginTop="10dp"
-                android:stepSize="1"/>
+                android:stepSize="0.5"/>
 
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rating_bar_2"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rating_bar_3"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rating_bar_4"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rating_bar_5"
                 android:numStars="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
