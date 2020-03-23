@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout mLinearLayout;
     TextInputEditText user,pass;
     MaterialButton bt_login;
-    TextView tv_signup;
+    TextView tv_signup,tv_password;
     ProgressBar mProgressBar;
 
     private FirebaseAuth mFirebaseAuth;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         pass=findViewById(R.id.password);
         bt_login=findViewById(R.id.button_login);
         tv_signup=findViewById(R.id.tv_signup);
-
+        tv_password=findViewById(R.id.tv_password);
 
         GradientDrawable mGradientDrawable=new GradientDrawable(GradientDrawable.Orientation.TR_BL,
                 new int[]{Color.parseColor(color1),Color.parseColor(color2),Color.parseColor(color3)});
@@ -77,6 +77,15 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        tv_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,ForgotPass.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void userlogin() {

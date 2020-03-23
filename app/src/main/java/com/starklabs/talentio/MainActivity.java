@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("logout:","I was here 1");
                         logoutMethod();
                         break;
+
+                    case R.id.menu_change_pass:
+                        Intent intent = new Intent(MainActivity.this,ResetPassActivity.class);
+                        startActivity(intent);
                 }
                 return true;
             }

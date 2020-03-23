@@ -6,4 +6,7 @@
     <item android:id="@+id/menu_logout"
         android:icon="@drawable/logout"
         android:title="Logout"/>
+    <item android:id="@+id/menu_change_pass"
+        android:icon="@drawable/people"
+        android:title="Change Password"/>
 </menu>
