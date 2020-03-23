@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="144dp"
         android:contentDescription="@string/talentio"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo_2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:fontFamily="cursive"
-        android:text="@string/talentio"
+        android:gravity="center"
+        android:text="Talentio Solutions India\nPvt. Ltd."
         android:textColor="@color/colorAccent"
         android:textSize="32dp"
         android:textStyle="bold" />

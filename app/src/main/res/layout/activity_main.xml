@@ -42,7 +42,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/logo"
+                        android:src="@drawable/logo_2"
                         app:civ_border_color="#689F38"
                         android:layout_gravity="end"
                         android:layout_marginEnd="15dp" />
