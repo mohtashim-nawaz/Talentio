@@ -6,9 +6,9 @@
     <string name="city">City</string>
     <string name="instructor">Instructor</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rating_parameter_1">Knowledge of the subject:</string>
-    <string name="rating_parameter_2">Interactiveness of session:</string>
-    <string name="rating_parameter_3">Problem solving skills:</string>
+    <string name="rating_parameter_1">Verbal skills:</string>
+    <string name="rating_parameter_2">Aptitude:</string>
+    <string name="rating_parameter_3">Coding skills:</string>
     <string name="rating_parameter_4">Value of time:</string>
     <string name="rating_parameter_5">Helping the students:</string>
 </resources>
