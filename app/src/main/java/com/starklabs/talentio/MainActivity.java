@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("menu:",item.getItemId()+"");
                 switch (item.getItemId()) {
                     case R.id.menu_logout:
+                        Log.d("logout:","I was here 1");
                         logoutMethod();
                         break;
                 }
@@ -223,9 +224,12 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth mAuth=FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
+        Log.d("logout:","I was here 2");
         if(user!=null)
         {
+            Log.d("logout:","I was here 3");
             mAuth.signOut();
+            Log.d("logout:","I was here 4");
             Intent intent=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
             Toast.makeText(myActivity, "Signed out successfully", Toast.LENGTH_SHORT).show();

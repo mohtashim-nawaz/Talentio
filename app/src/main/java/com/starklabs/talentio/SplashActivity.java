@@ -39,15 +39,24 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mFirebaseUser=mFirebaseAuth.getCurrentUser();
-                if(mFirebaseUser!=null)
+                if(mFirebaseUser!=null && mFirebaseUser.isEmailVerified())
                 {
                     Intent intent=new Intent(SplashActivity.this,MainActivity.class);
+                    intent.putExtra("verified",1);
                     startActivity(intent);
                     finish();
                 }
-                else
+                else if(mFirebaseUser!=null && !mFirebaseUser.isEmailVerified())
                 {
                     Intent intent= new Intent(SplashActivity.this,LoginActivity.class);
+                    intent.putExtra("verified",0);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(mFirebaseUser==null)
+                {
+                    Intent intent= new Intent(SplashActivity.this,LoginActivity.class);
+                    intent.putExtra("verified",99);
                     startActivity(intent);
                     finish();
                 }

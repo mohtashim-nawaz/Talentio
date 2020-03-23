@@ -52,9 +52,15 @@ public class LoginActivity extends AppCompatActivity {
         bt_login=findViewById(R.id.button_login);
         tv_signup=findViewById(R.id.tv_signup);
 
+
         GradientDrawable mGradientDrawable=new GradientDrawable(GradientDrawable.Orientation.TR_BL,
                 new int[]{Color.parseColor(color1),Color.parseColor(color2),Color.parseColor(color3)});
         mLinearLayout.setBackgroundDrawable(mGradientDrawable);
+
+        if(getIntent().getIntExtra("verified",-1)==0)
+        {
+            Toast.makeText(LoginActivity.this, "Please check your email for verification then Login again", Toast.LENGTH_SHORT).show();
+        }
 
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,20 +113,18 @@ public class LoginActivity extends AppCompatActivity {
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(LoginActivity.this,"Successful",Toast.LENGTH_LONG).show();
                     final FirebaseUser curUser=mFirebaseAuth.getCurrentUser();
-                    if(!curUser.isEmailVerified())
+                    if(curUser==null)
+                    {
+                        Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else if(!curUser.isEmailVerified())
                     {
                          AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                          builder.setCancelable(false)
-                                 .setMessage("E-mail is not verified. Please verify and Login again.\nResend Verification E-mail?")
-                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialog, int which) {
-                                         dialog.dismiss();
-                                     }
-                                 })
-                                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                 .setMessage("E-mail is not verified. Please verify and Login again\nResend verification e-mail?")
+                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                      @Override
                                      public void onClick(DialogInterface dialog, int which) {
                                          curUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -128,26 +132,31 @@ public class LoginActivity extends AppCompatActivity {
                                              public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful())
                                                     {
-                                                        Toast.makeText(LoginActivity.this, "Successfully sent the email.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(LoginActivity.this, "Sent successfully", Toast.LENGTH_SHORT).show();
                                                     }
                                                     else
                                                     {
-                                                        Toast.makeText(LoginActivity.this,"Couldn't send the email.\n Please retry after some time",Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                                                     }
                                              }
                                          });
+                                         mFirebaseAuth.signOut();
+                                        dialog.dismiss();
                                      }
                                  })
-                                 .setNeutralButton("DISMISS", new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialog, int which) {
-                                         dialog.dismiss();
-                                     }
-                                 });
+                                    .setNeutralButton("DISMISS", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            mFirebaseAuth.signOut();
+                                            dialog.dismiss();
+                                        }
+                                    });
                          AlertDialog alertDialog = builder.create();
                          alertDialog.show();
                     }
-                    else {
+                    else if(curUser!=null && curUser.isEmailVerified())
+                        {
+                        Toast.makeText(LoginActivity.this,"Successful",Toast.LENGTH_LONG).show();
                         Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

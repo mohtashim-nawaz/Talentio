@@ -4,6 +4,6 @@
     tools:showIn="navigation_view">
 
     <item android:id="@+id/menu_logout"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logout"
         android:title="Logout"/>
 </menu>

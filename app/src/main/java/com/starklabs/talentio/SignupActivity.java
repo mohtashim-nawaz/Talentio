@@ -103,6 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Check your e-mail for verification", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            mAuth.signOut();
                             Intent intent= new Intent(SignupActivity.this,LoginActivity.class);
                             startActivity(intent);
                             finish();
