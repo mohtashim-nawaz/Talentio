@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.api.Distribution;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,6 +41,12 @@ public class RateActivity extends AppCompatActivity
     double v1,v2,v3,v4,v5;
     double num;
     ProgressDialog localProgress;
+    LinearLayout mainLayout;
+
+    String color1="#3949ab";
+    String color2="#1976d2";
+    String color3="#4fc3f7";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +58,11 @@ public class RateActivity extends AppCompatActivity
         bar3 = findViewById(R.id.rating_bar_3);
         bar4 = findViewById(R.id.rating_bar_4);
         bar5 = findViewById(R.id.rating_bar_5);
+        mainLayout=findViewById(R.id.main_layout_rating);
+
+        GradientDrawable mGradientDrawable=new GradientDrawable(GradientDrawable.Orientation.TR_BL,
+                new int[]{Color.parseColor(color1),Color.parseColor(color2),Color.parseColor(color3)});
+        mainLayout.setBackgroundDrawable(mGradientDrawable);
 
         localProgress=new ProgressDialog(RateActivity.this);
         localProgress.setCancelable(false);

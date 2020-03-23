@@ -27,9 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    String color1="#f44336";
-    String color2="#ff5722";
-    String color3="#ffcdd2";
+    String color1="#3949ab";
+    String color2="#1976d2";
+    String color3="#4fc3f7";
     LinearLayout mLinearLayout;
     TextInputEditText user,pass;
     MaterialButton bt_login;

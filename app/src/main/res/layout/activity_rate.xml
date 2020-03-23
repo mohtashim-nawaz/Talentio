@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/main_layout_rating">
 
 
         <TextView
@@ -34,8 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_parameter_1"
-                android:textStyle="bold|italic"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
 
             <RatingBar
@@ -61,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_parameter_2"
-                android:textStyle="bold|italic"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
 
             <RatingBar
@@ -87,8 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_parameter_3"
-                android:textStyle="bold|italic"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
 
             <RatingBar
@@ -113,8 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_parameter_4"
-                android:textStyle="bold|italic"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
 
             <RatingBar
@@ -139,8 +140,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_parameter_5"
-                android:textStyle="bold|italic"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
 
             <RatingBar

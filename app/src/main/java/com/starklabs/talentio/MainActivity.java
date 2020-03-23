@@ -12,6 +12,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
     NavigationView mNavigationView;
 
+    String color1="#3949ab";
+    String color2="#1976d2";
+    String color3="#4fc3f7";
 
 
     @Override
@@ -88,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        GradientDrawable mGradientDrawable=new GradientDrawable(GradientDrawable.Orientation.TR_BL,
+                new int[]{Color.parseColor(color1),Color.parseColor(color2),Color.parseColor(color3)});
+        mainLayout.setBackgroundDrawable(mGradientDrawable);
 
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

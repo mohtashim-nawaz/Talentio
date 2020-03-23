@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,12 @@ public class SignupActivity extends AppCompatActivity {
     TextView signup_signin;
     private FirebaseAuth mAuth;
     ProgressBar mProgressBar;
+    LinearLayout mainLayout;
+
+    String color1="#3949ab";
+    String color2="#1976d2";
+    String color3="#4fc3f7";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +50,12 @@ public class SignupActivity extends AppCompatActivity {
         signup_pass=findViewById(R.id.signup_password);
         signup_submit=findViewById(R.id.signup_submit);
         signup_signin=findViewById(R.id.tv_signin);
+        mainLayout=findViewById(R.id.main_layout_signup);
+
+        GradientDrawable mGradientDrawable=new GradientDrawable(GradientDrawable.Orientation.TR_BL,
+                new int[]{Color.parseColor(color1),Color.parseColor(color2),Color.parseColor(color3)});
+        mainLayout.setBackgroundDrawable(mGradientDrawable);
+
 
         signup_submit.setOnClickListener(new View.OnClickListener() {
             @Override
